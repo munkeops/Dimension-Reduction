@@ -108,25 +108,25 @@ while(accuracy<95 and minval <100):
     if((currentx-1>=0) and currenty-1>=0 ):
         l.append(matdimension[currentx-1][currenty-1])
     else :
-        l.append(100); 
+        l.append(100) 
     if((currentx>=0) and currenty-1>=0):
         l.append(matdimension[currentx][currenty-1])
     else :
-        l.append(100); 
+        l.append(100) 
     if((currentx>=0) and currenty-1>=0) and (currentx+1<=7):
         l.append(matdimension[currentx+1][currenty-1])
     else :
-        l.append(100); 
+        l.append(100) 
 
     if((currentx-1>=0) and currenty>=0):
         l.append(matdimension[currentx-1][currenty])
     else :
-        l.append(100);  
+        l.append(100)  
    
     if((currentx>=0) and currenty>=0 and (currentx+1<8) ):
         l.append(matdimension[currentx+1][currenty])
     else :
-        l.append(100); 
+        l.append(100) 
 
     if((currentx-1>=0) and currenty>=0 and (currenty+1<8)):
         l.append(matdimension[currentx-1][currenty+1])
@@ -135,11 +135,11 @@ while(accuracy<95 and minval <100):
     if((currentx>=0) and currenty>=0 and (currenty+1<8)):
         l.append(matdimension[currentx][currenty+1])
     else :
-        l.append(100); 
+        l.append(100) 
     if((currentx>=0) and currenty>=0 and (currentx+1<8) and (currenty+1<8)):
         l.append(matdimension[currentx+1][currenty+1])
     else :
-        l.append(100); 
+        l.append(100) 
 
 
     matdimension[currentx][currenty]=100
@@ -177,6 +177,7 @@ while(accuracy<95 and minval <100):
     print(accuracy)
 print("hence by reducing the dimensions the only required dimenions to give approximately 91% accuracy through greeedy algorithm are mentioned below")
 print(dims)
+print(len(dims))
 
 datas = dataset.copy() 
 for i in range(0,1797):
