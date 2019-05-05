@@ -23,31 +23,28 @@ for index, (image, label) in enumerate(zip(digits.data[0:5], digits.target[0:5])
     plt.show()
 
 
-dimension=[0]*64
-reduced=[0]*64
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.25, random_state=0)
 
-print (dimension)
-
-def classify(datas,end):
-
-
-    #from sklearn.model_selection import train_test_split
-    #x_train, x_test, y_train, y_test = train_test_split(digits.data, digits.target, test_size=0.25, random_state=0)
-
-    from sklearn.model_selection import train_test_split
-    x_train, x_test, y_train, y_test = train_test_split(datas, end, test_size=0.25, random_state=0)
-
-    from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression
 
     # all parameters not specified are set to their defaults
     logisticRegr = LogisticRegression()
 
     logisticRegr.fit(x_train, y_train)
+dimension=[0]*64
+reduced=[0]*64
 
+
+def classify(datas,end):
+    #method to run the new data sets on the regression model to calculate accuracy
+    
+    from sklearn.model_selection import train_test_split
+    x_train, x_test, y_train, y_test = train_test_split(datas, end, test_size=0.25, random_state=0)
+ 
     # Returns a NumPy Array
     # Predict for One Observation (image)
     logisticRegr.predict(x_test[0].reshape(1,-1))
-
 
     predictions = logisticRegr.predict(x_test)
    # //print(predictions)
@@ -58,7 +55,7 @@ def classify(datas,end):
 #/print(score*100)
 
 def dimreduc(k,dataset,end):
-    
+    #function to reduce the dimenion of the data set one pixel at a time(one dimension at a time)
     datas = dataset.copy() 
     for i in range(0,1797):
         for j in range(0,64):
@@ -67,7 +64,7 @@ def dimreduc(k,dataset,end):
     return classify(datas,end)
 
 def dimreduc2(dataset,end,dims):
-    
+    #function to increase dimensions when re-building image (reduces original data set to the number of dimension wanted)
     datas = dataset.copy() 
     for i in range(0,1797):
         for j in range(0,64):
@@ -75,23 +72,15 @@ def dimreduc2(dataset,end,dims):
                 datas[i][j]=0
     return classify(datas,end)
     
-    
-    
-            
-
+  
 def dto2d(l):
+    #fucntion to convert single row data into a 8x8 matrix
     onedarray = np.array(l)
     twodarray=onedarray.reshape(8,8)
     return twodarray
 
-def d2tod(l):
-    m=[]
-    for i in l:
-        for j in i:
-            m.append(j)
-    return m
-
 for i in range(0,64):
+    #function to loop on the given data set to extract one pixel at a time and calculate accuracy without those pixels
     dimension[i] = dimreduc(i,dataset,end)
 
 
