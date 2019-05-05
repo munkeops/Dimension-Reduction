@@ -28,10 +28,12 @@ x_train, x_test, y_train, y_test = train_test_split(digits.data, digits.target, 
 
 from sklearn.linear_model import LogisticRegression
 
-    # all parameters not specified are set to their defaults
-    logisticRegr = LogisticRegression()
+# all parameters not specified are set to their defaults
+logisticRegr = LogisticRegression()
+#train the regression model with original dataset 
+logisticRegr.fit(x_train, y_train)
 
-    logisticRegr.fit(x_train, y_train)
+
 dimension=[0]*64
 reduced=[0]*64
 
@@ -172,9 +174,7 @@ while(accuracy<95 and minval <100):
     #newlist = d2tod(reduced)
     dims.append(8*currentx+currenty)
     accuracy=dimreduc2(dataset,end,dims)
-    print(minval)
     print(accuracy)
-    print(currentx," ",currenty)
 print(dims)
 
 datas = dataset.copy() 
