@@ -16,11 +16,11 @@ end = digits.target
 import numpy as np 
 import matplotlib.pyplot as plt
 plt.figure(figsize=(20,4))
-for index, (image, label) in enumerate(zip(digits.data[0:5], digits.target[0:5])):
-    plt.subplot(1, 5, index + 1)
+for index, (image, label) in enumerate(zip(digits.data[0:10], digits.target[0:10])):
+    plt.subplot(1, 10, index + 1)
     plt.imshow(np.reshape(image, (8,8)), cmap=plt.cm.gray)
-    plt.title('Training: %i\n' % label, fontsize = 20) 
-    plt.show()
+    plt.title('Training: %i\n' % label, fontsize = 10) 
+plt.show()
 
 
 from sklearn.model_selection import train_test_split
@@ -91,7 +91,7 @@ print(dimension)
 matdimension=dto2d(dimension)
 
 
-currentx=2
+currentx=4
 currenty=4
 #print(current)
 reduced=dto2d(reduced)
@@ -175,6 +175,7 @@ while(accuracy<95 and minval <100):
     dims.append(8*currentx+currenty)
     accuracy=dimreduc2(dataset,end,dims)
     print(accuracy)
+print("hence by reducing the dimensions the only required dimenions to give approximately 91% accuracy through greeedy algorithm are mentioned below")
 print(dims)
 
 datas = dataset.copy() 
@@ -186,8 +187,12 @@ for i in range(0,1797):
 import numpy as np 
 import matplotlib.pyplot as plt
 plt.figure(figsize=(20,4))
-for index, (image, label) in enumerate(zip(datas[0:5], end[0:5])):
-    plt.subplot(1, 5, index + 1)
+for index, (image, label) in enumerate(zip(digits.data[0:10], digits.target[0:10])):
+    plt.subplot(2, 10, index + 1)
     plt.imshow(np.reshape(image, (8,8)), cmap=plt.cm.gray)
-    plt.title('Training: %i\n' % label, fontsize = 20) 
-    plt.show()
+    plt.title('Initial: %i\n' % label, fontsize = 10) 
+for index, (image, label) in enumerate(zip(datas[0:10], end[0:10])):
+    plt.subplot(2, 10, index + 1+10)
+    plt.imshow(np.reshape(image, (8,8)), cmap=plt.cm.gray)
+    plt.title('Final: %i\n' % label, fontsize = 10) 
+plt.show()
